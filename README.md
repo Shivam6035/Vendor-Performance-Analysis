@@ -1,9 +1,10 @@
 # Vendor Performance & Sales Analysis Report
 
-1. Executive Summary
+### Executive Summary
 This report evaluates inventory, sales, and vendor performance using the vendor_sales_summary dataset. The analysis highlights key revenue drivers, supplier dependencies, and cost-efficiency trends. By understanding these dynamics, the business can streamline purchasing strategies, optimize inventory turnover, and maximize gross profit margins.
 
-2. Key Performance Indicators (KPIs)
+### Key Performance Indicators (KPIs)
+
 Based on the overarching dataset (10,692 items), the following KPIs provide a baseline for business health:
 
 Median Profit Margin: 30.40% (indicates a healthy and consistent baseline profitability across the majority of inventory items).
@@ -14,7 +15,8 @@ Average Sales-to-Purchase Ratio: 2.50 (indicates strong revenue generation relat
 
 Top 10 Vendor Sales Contribution: 65.69% (shows a heavy concentration of revenue tied to a select few suppliers).
 
-3. Key Business Insights
+### Key Business Insights
+
 A. Vendor Concentration & Market Leaders
 A small fraction of vendors dictates the majority of sales volume. The Top 10 vendors account for roughly two-thirds (65.69%) of the total sales contribution.
 
@@ -46,7 +48,8 @@ Large Orders: Average Unit Purchase Price = $10.78
 
 Insight: Moving from "Small" to "Large" purchasing volumes reduces the average unit price by nearly 72%, highlighting massive economies of scale.
 
-4. Actionable Recommendations
+### Actionable Recommendations
+
 Capitalize on Volume Discounts: The data proves that bulk purchasing significantly drives down unit costs. Procurement teams should identify high-turnover items currently being ordered in "Small" or "Medium" batches and shift them to "Large" order sizes to secure the $10.78 average unit price.
 
 Renegotiate with Tier-1 Vendors: Because Diageo, Martignetti, and Pernod Ricard account for over 32% of your total sales, the business has significant volume leverage. Use this to negotiate better payment terms, deeper bulk discounts, or freight cost subsidies with these specific suppliers.
