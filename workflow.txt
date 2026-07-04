@@ -1,0 +1,104 @@
+conda create -n vendor python=3.10 -y
+conda activate vendor
+
+
+Action,Git Command
+
+1. Un-track the file(Removes it from Git's memory but keeps your local file safe)-->  git rm --cached inventory.db
+2. Ignore the file(Tells Git to never look at this file again)-->  "echo ""inventory.db"" >> .gitignore"
+3. Stage the ignore rule(Prepares the new rule for the commit)-->  git add .gitignore
+4. Rewrite the last commit(Swaps out the massive file for the ignore rule without changing your commit message)-->  git commit --amend --no-edit
+5. Push to GitHub(Uploads your clean code)-->  git push origin main
+
+
+
+1. Install the cleanup tool(Uses Python to install Git's official history re-writer) -->  pip install git-filter-repo
+2. Scrub massive files(Scours your entire project history and permanently deletes anything over GitHub's 100MB limit) -->  git filter-repo --strip-blobs-bigger-than 100M
+3. Reconnect to GitHub(The previous step unlinks your repo for safety; this re-links it) -->  git remote add origin https://github.com/Shivam6035/Vendor-Performance-Analysis.git
+4. Force push the clean history(Overwrites GitHub's corrupted remote history with your clean local history) -->  git push -u origin main --force
+
+
+
+1. Nuke the old history(Deletes the hidden tracking folder. Use rm -rf .git on Mac/Linux) --> rmdir /s /q .git
+2. Verify the ignore rule(Ensures the database is ignored before we start tracking again) --> "echo ""inventory.db"" >> .gitignore"
+3. Initialize a clean repo(Starts a fresh timeline from this exact moment) --> git init
+4. Stage all safe files(Adds your code, automatically ignoring the database). --> git add .
+5. Create the first clean commit(Locks in your project state) --> "git commit -m ""Initial commit (clean history)"""
+6. Link to GitHub(Connects your local folder back to the remote repository) --> git remote add origin https://github.com/Shivam6035/Vendor-Performance-Analysis.git
+7. Force push to the cloud(Wipes the broken GitHub history and replaces it with your fresh timeline) --> git push -u origin main --force
+
+## --- Loading Data using python script in PowerBI --- 
+
+
+Before writing any code, Power BI needs to know exactly which Python environment has your installed packages (like `pandas`).
+
+1. Open Power BI Desktop.
+2. Navigate to 'File' > 'Options and settings' > 'Options'.
+3. In the left-hand menu under 'Global', select 'Python scripting'.
+4. Under the 'Detected Python home directories' dropdown, select 'Other'.
+5. Paste the exact path to your Anaconda environment:
+```text
+C:\Users\6035s\anaconda3\envs\vendor\
+
+```
+
+
+6. Click 'OK' to apply the changes.
+
+---
+
+Step 1: Open the Python Script Connector
+
+Power BI has a dedicated connector for running Python scripts as a data source.
+
+1. From the Power BI Home ribbon, click 'Get Data'.
+2. Select 'More...' at the bottom of the dropdown list.
+3. In the search bar on the left, type 'Python'.
+4. Select 'Python script' and click 'Connect'.
+
+Step 2: Write the Extraction Script
+
+A window will pop up asking for your Python script. This script will connect to your local database, read the tables, and store them as Pandas DataFrames (which Power BI automatically recognizes as importable tables).
+
+1. Paste the following code into the script text box:
+
+```python
+import sqlite3
+import pandas as pd
+
+1. Define the absolute path to your local database
+
+db_path = r"C:\Users\6035s\Desktop\MLOPS\Vendor-Performance-Analysis\inventory.db"
+
+2. Establish the connection
+
+conn = sqlite3.connect(db_path)
+
+3. Write SQL queries to extract the tables into Pandas DataFrames
+
+vendor_sales_summary = pd.read_sql_query("SELECT * FROM vendor_sales_summary", conn)
+brand_performance = pd.read_sql_query("SELECT * FROM BrandPerformance", conn)
+low_turnover_vendor = pd.read_sql_query("SELECT * FROM LowTurnoverVendor", conn)
+purchase_contribution = pd.read_sql_query("SELECT * FROM PurchaseContribution", conn)
+
+4. Close the connection
+
+conn.close()
+
+```
+
+2. Click 'OK' to execute the script.
+
+Step 3: Select and Load Your Data
+
+Once the script finishes running, Power BI will open the 'Navigator' window.
+
+1. On the left side of the Navigator, you will see a folder icon containing the names of the DataFrames you created in your script (`vendor_sales_summary`, `brand_performance`, etc.).
+2. 'Check the boxes' next to the tables you want to import into your dashboard.
+3. A preview of your data will appear on the right side of the screen.
+4. Click 'Load' to pull the data directly into your Power BI model.
+* *(Optional: If you need to clean or filter the data further before building visuals, click 'Transform Data' instead to open the Power Query Editor).*
+
+
+
+You can now find your fully populated tables in the Data pane on the right side of your Power BI workspace, ready to be used for your dashboards.
